@@ -17,6 +17,14 @@ const container = new Vue({
             if(this.indexPhoto > (this.photos.length - 1)) {
                 this.indexPhoto = 0;
             }
+        },
+
+        prevPhoto() {
+            this.indexPhoto -= 1;
+            
+            if(this.indexPhoto < 0) {
+                this.indexPhoto = this.photos.length - 1;
+            }
         }
     }
 });
