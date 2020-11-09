@@ -8,8 +8,12 @@ const container = new Vue({
             './images/image2.jpg',
             './images/image3.jpg',
             './images/image4.jpg',
-        ]
+        ],
+        intervalId: 0,
     }, 
+    created() {
+        this.startLoop();
+    },
     methods: {
         nextPhoto() {
             this.indexPhoto += 1;
@@ -25,6 +29,17 @@ const container = new Vue({
             if(this.indexPhoto < 0) {
                 this.indexPhoto = this.photos.length - 1;
             }
+        },
+        setPhoto(index) {
+            this.indexPhoto = index;
+        },
+        startLoop() {
+            this.intervalId = setInterval(() => {
+                this.nextPhoto();
+            } ,3000);
+        },
+        stopLoop(){
+            clearInterval(this.intervalId);
         }
     }
 });

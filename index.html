@@ -12,21 +12,25 @@
     </head>
     <body>
         <div id="container">
-            <div class="slider-wrapper">
+            <div class="slider-wrapper" @mouseenter='stopLoop' @mouseleave='startLoop'>
+
                 <div class="prev" @click='prevPhoto'>
                     <i class="fas fa-angle-left"></i>
                 </div>
+
                 <div class="images">
                     <img :src="photos[indexPhoto]" alt="">
                 </div>
+
                 <div class="next" @click='nextPhoto'>
                     <i class="fas fa-angle-right"></i>
                 </div>
+                
                 <div class="nav">
-                    <i class="fas fa-circle active first"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle"></i>
-                    <i class="fas fa-circle last"></i>
+                    <i v-for='(photo, index) in photos' class="fas fa-circle" 
+                    :class="index == indexPhoto ? 'active' : ''"
+                    @click="setPhoto(index)">                    
+                    </i>
                 </div>
             </div>
         </div>
